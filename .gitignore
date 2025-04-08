@@ -1,1 +1,13 @@
 venv/
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+# Archivos temporales
+*.swp
+*.bak
+*.tmp
+# Archivos de configuración sensibles (si los usás)
+.env
+.env.*
