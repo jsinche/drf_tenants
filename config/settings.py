@@ -39,16 +39,22 @@ SHARED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "simple_history",
+    "users",
+    "memberships",
 ]
 
 TENANT_APPS = [
     "client_app",
+    "users",
 ]
 
 INSTALLED_APPS = SHARED_APPS + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
-    'django_tenants.middleware.main.TenantMainMiddleware',
+    "django_tenants.middleware.main.TenantMainMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -120,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es"
 
 TIME_ZONE = "UTC"
 
@@ -145,3 +151,15 @@ TENANT_MODEL ="app.Client"
 TENANT_DOMAIN_MODEL = "app.Domain"
 
 PUBLIC_SCHEMA_URLCONF = "app.urls"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
+
+AUTH_USER_MODEL = "users.User"

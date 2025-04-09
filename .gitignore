@@ -11,3 +11,6 @@ __pycache__/
 # Archivos de configuración sensibles (si los usás)
 .env
 .env.*
+
+#vscode
+.vscode/

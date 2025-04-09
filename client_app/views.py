@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from rest_framework import generics
 from django.http import HttpResponse
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the client_app index.")
+from .models import Employee
+def create_employee(request, name):
+    employee = Employee(name=name)
+    employee.save()
+    return HttpResponse(f"Employee {name} created.")
